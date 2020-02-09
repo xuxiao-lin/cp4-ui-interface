@@ -37,4 +37,8 @@ public class CubeManager {
 	public HashSet<CubeVar> getAffectedCubeVars(CubeVar sourceVar) {
 		return new HashSet<CubeVar>();
 	}
+	
+	public CubeProxy createCubeProxy() {
+		return null;
+	}
 }
