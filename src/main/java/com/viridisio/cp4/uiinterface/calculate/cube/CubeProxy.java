@@ -15,4 +15,7 @@ public abstract class CubeProxy {
 	public abstract ExpressionValue getReadonlyVarValue(CubeVar var);
 	public abstract void commitChanges();
 	public abstract void cancelChanges();
+	
+	public abstract void onInputVarChanging(CubeVar var);
+	public abstract void inputVarChanged(CubeVar var);
 }
