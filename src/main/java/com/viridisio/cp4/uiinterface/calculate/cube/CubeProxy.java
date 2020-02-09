@@ -21,9 +21,9 @@ public abstract class CubeProxy {
 	
 	public abstract ExpressionValue getReadonlyVarValue(CubeVar var);
 	public void commitChanges() {
-		CubeService.commitCubeChanges(this, getCommitChangesJsonData());
+		CubeService.commitCubeChanges(this);
 	}
-	protected abstract JSONObject getCommitChangesJsonData();
+	public abstract JSONObject getCommitChangesJsonData();
 	public void cancelChanges() {
 		CubeService.cancelCubeChanges(this);
 	}
