@@ -4,7 +4,6 @@ import org.json.JSONObject;
 
 import com.viridisio.cp4.uiinterface.calculate.cube.expression.ExpressionValue;
 
-import webservice.CubeService;
 
 //TODO
 public abstract class CubeProxy {
@@ -20,13 +19,7 @@ public abstract class CubeProxy {
 	}
 	
 	public abstract ExpressionValue getReadonlyVarValue(CubeVar var);
-	public void commitChanges() {
-		CubeService.commitCubeChanges(this);
-	}
-	public abstract JSONObject getCommitChangesJsonData();
-	public void cancelChanges() {
-		CubeService.cancelCubeChanges(this);
-	}
+	public abstract JSONObject getChangesJsonData();
 	
 	public abstract void onInputVarChanging(CubeVar var);
 	public void inputVarChanged(CubeVar var) {

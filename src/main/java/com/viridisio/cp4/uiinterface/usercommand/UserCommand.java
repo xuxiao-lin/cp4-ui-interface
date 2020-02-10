@@ -4,27 +4,41 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import org.json.JSONObject;
 
+//run:start,callapi,end
+//undo:
 public abstract class UserCommand {
 	private CommandStatus _status;
 	public enum CommandStatus{
-		startRun,endRun,undoed,redoed
+		start,end
 	}
-	public CommandStatus getCommandStatus() {
+	public CommandStatus getStatus() {
 		return this._status;
 	}
-	//以下全部由command manager调用
-	public void changeStatus(CommandStatus status) {
+	public void setStatus(CommandStatus status) {
 		this._status = status;
 	}
-	//如异步执行，需通知manager.lock/unlockCommnds
-	//执行失败时，通知manager.commandWorkFailed
-	public abstract void startRun();
-	public abstract void endRun();
+	public abstract String getKey();
+	public void startCommand() {
+		this._status = CommandStatus.start;
+		this.keepOldValues();
+	}
+	protected abstract void keepOldValues();
+	public void startRun() {
+		this.runOnFrontend();
+	}
+	protected abstract void runOnFrontend();
+	public abstract boolean mustRunOnServer();
+	public abstract JSONObject sendDataToRunOnServer();
+	public void endRun(JSONObject serverResponse) {
+		this.afterRunOnServer(serverResponse);
+		this._status = CommandStatus.end;
+	}
+	protected abstract void afterRunOnServer(JSONObject response);
+	
 	public abstract void undo();
 	public abstract void redo();
-	public abstract void commit();
-	public abstract void cancel();
 	public abstract void rollback();
 	
 	

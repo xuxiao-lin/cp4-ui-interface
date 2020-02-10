@@ -1,47 +1,38 @@
 package com.viridisio.cp4.uiinterface.calculate.cube;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+
+import org.json.JSONObject;
+
 import com.viridisio.cp4.uiinterface.calculate.cube.expression.Expression;
 import com.viridisio.cp4.uiinterface.calculate.cube.expression.ExpressionValue;
 import com.viridisio.cp4.uiinterface.usercommand.UserCommand;
 
 public class ChangeCubeVarCommand extends UserCommand {
-	public CubeVar changingVar;
-	public ExpressionValue oldValue;
+	public CubeVar sourceVar;
 	public Expression oldExpression;
-	public ExpressionValue newValue;
 	public Expression newExpression;
-	@Override
-	public void startRun() {
-		CubeManager.getInstance().onCubeVarChanging(changingVar);
-	}
-
-	@Override
-	public void endRun() {
-		CubeManager.getInstance().cubeVarChanged(changingVar);
-	}
+	public ArrayList<CubeVar> changingVars = new ArrayList<CubeVar>();
+	public ArrayList<ExpressionValue> oldValues;
+	public ArrayList<ExpressionValue> newValues;
 
 	@Override
 	public void undo() {
-		changingVar.setExpression(oldExpression);
-		changingVar.setValue(oldValue);
-		CubeManager.getInstance().cubeVarChanged(changingVar);
+		sourceVar.setExpression(oldExpression);
+		for (int i=0;i<changingVars.size();i++) {
+			CubeVar var = changingVars.get(i);
+			var.setValue(oldValues.get(i));
+		}
 	}
 
 	@Override
 	public void redo() {
-		changingVar.setExpression(newExpression);
-		changingVar.setValue(newValue);
-		CubeManager.getInstance().cubeVarChanged(changingVar);
-	}
-
-	@Override
-	public void commit() {
-		changingVar.getCubeProxy().commitChanges();
-	}
-
-	@Override
-	public void cancel() {
-		changingVar.getCubeProxy().cancelChanges();
+		sourceVar.setExpression(newExpression);
+		for (int i=0;i<changingVars.size();i++) {
+			CubeVar var = changingVars.get(i);
+			var.setValue(newValues.get(i));
+		}
 	}
 
 	@Override
@@ -55,4 +46,50 @@ public class ChangeCubeVarCommand extends UserCommand {
 		return "change var";
 	}
 
+	@Override
+	protected void keepOldValues() {
+		this.oldExpression = this.sourceVar.getExpression();
+		HashSet<CubeVar> affectedVars = CubeManager.getInstance().getAffectedCubeVars(sourceVar, false);
+		this.changingVars.add(this.sourceVar);
+		this.changingVars.addAll(affectedVars);
+		for (CubeVar var : this.changingVars) {
+			this.oldValues.add(var.getValue());
+		}
+		this._mustRunOnServer = CubeManager.getInstance().getLastAffectedSearchMustRunOnServer();
+	}
+	private boolean _mustRunOnServer = false;
+	@Override
+	public boolean mustRunOnServer() {
+		return this._mustRunOnServer;
+	}
+
+	@Override
+	public JSONObject sendDataToRunOnServer() {
+		JSONObject jso = new JSONObject();
+		jso.put("sourceCube", this.sourceVar.getCubeProxy().getId());
+		jso.put("sourceVar", this.sourceVar.getKey());
+		return jso;
+	}
+
+	@Override
+	protected void afterRunOnServer(JSONObject response) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getKey() {
+		return Key;
+	}
+
+	@Override
+	protected void runOnFrontend() {
+		if (this._mustRunOnServer)
+			return;
+		CubeManager.getInstance().runCubeVarOnFrontend(this.sourceVar);
+		for (int i=0;i<changingVars.size();i++) {
+			this.newValues.add(changingVars.get(i).getValue());
+		}
+	}
+	public static String Key = "ChangeCubeVar";
 }
