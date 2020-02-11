@@ -1,4 +1,4 @@
-package com.viridisio.cp4.uiinterface;
+package com.cp4biz.cp4.uiinterface;
 
 /**
  * Hello world!

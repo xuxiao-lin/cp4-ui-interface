@@ -1,14 +1,15 @@
-package com.viridisio.cp4.uiinterface.calculate.cube;
+package com.cp4biz.cp4.uiinterface.calculate.cube;
 
 import org.json.JSONObject;
 
-import com.viridisio.cp4.uiinterface.calculate.cube.expression.ExpressionValue;
+import com.cp4biz.cp4.uiinterface.calculate.cube.expression.ExpressionValue;
 
 
 //TODO
 public abstract class CubeProxy {
+	private String _id;
 	public String getId() {
-		return null;
+		return _id;
 	}
 	public CubeVar getVar(String key) {
 		return null;

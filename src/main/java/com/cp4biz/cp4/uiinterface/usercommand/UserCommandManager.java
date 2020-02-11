@@ -1,12 +1,12 @@
-package com.viridisio.cp4.uiinterface.usercommand;
+package com.cp4biz.cp4.uiinterface.usercommand;
 
 import java.util.Stack;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.viridisio.cp4.uiinterface.calculate.cube.CubeManager;
-import com.viridisio.cp4.uiinterface.usercommand.UserCommand.CommandStatus;
+import com.cp4biz.cp4.uiinterface.calculate.cube.CubeManager;
+import com.cp4biz.cp4.uiinterface.usercommand.UserCommand.CommandStatus;
 
 import webservice.CommandService;
 

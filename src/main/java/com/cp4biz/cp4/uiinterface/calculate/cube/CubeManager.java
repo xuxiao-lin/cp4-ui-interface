@@ -1,12 +1,12 @@
-package com.viridisio.cp4.uiinterface.calculate.cube;
+package com.cp4biz.cp4.uiinterface.calculate.cube;
 
 import java.util.HashSet;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.viridisio.cp4.uiinterface.calculate.cube.expression.Expression;
-import com.viridisio.cp4.uiinterface.calculate.cube.expression.ExpressionValue;
+import com.cp4biz.cp4.uiinterface.calculate.cube.expression.Expression;
+import com.cp4biz.cp4.uiinterface.calculate.cube.expression.ExpressionValue;
 
 public class CubeManager {
 	protected static CubeManager _instance;
@@ -61,8 +61,7 @@ public class CubeManager {
 		}
 		return jsa;
 	}
-	
-	public CubeProxy createCubeProxy() {
+	public CubeProxy iniNewCubeFromJson(JSONObject jso) {
 		return null;
 	}
 }

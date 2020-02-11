@@ -1,7 +1,7 @@
-package com.viridisio.cp4.uiinterface.calculate.cube;
+package com.cp4biz.cp4.uiinterface.calculate.cube;
 
-import com.viridisio.cp4.uiinterface.calculate.cube.expression.Expression;
-import com.viridisio.cp4.uiinterface.calculate.cube.expression.ExpressionValue;
+import com.cp4biz.cp4.uiinterface.calculate.cube.expression.Expression;
+import com.cp4biz.cp4.uiinterface.calculate.cube.expression.ExpressionValue;
 
 public class CubeVar {
 	public void setExpression(Expression expression) {
