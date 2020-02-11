@@ -1,8 +1,0 @@
-{
-	"plugins":[
-		{"key":"cp4biz.sample" "ver":"1.0" "required"="aaa-1.0", cubetypes:[
-			{key:"simpleCube", class:"com.cp4biz.cp4.uiinterface.SimpleCube"}
-			]
-		}
-	]
-}

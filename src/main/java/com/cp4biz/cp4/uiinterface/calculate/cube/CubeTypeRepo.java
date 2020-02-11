@@ -1,12 +1,8 @@
 package com.cp4biz.cp4.uiinterface.calculate.cube;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.HashMap;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 

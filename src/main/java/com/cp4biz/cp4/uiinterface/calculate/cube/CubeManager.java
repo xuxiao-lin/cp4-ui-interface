@@ -62,6 +62,12 @@ public class CubeManager {
 		return jsa;
 	}
 	public CubeProxy iniNewCubeFromJson(JSONObject jso) {
-		return null;
+		String sType = jso.getString("type");
+		CubeType type = CubeTypeRepo.getInstance().getCubeType(sType);
+		if (type == null) {
+			//throw no such type exception
+		}
+		CubeProxy cube = type.getNewCube(jso);
+		return cube;
 	}
 }
