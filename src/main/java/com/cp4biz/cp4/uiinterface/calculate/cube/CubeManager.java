@@ -36,7 +36,7 @@ public class CubeManager {
 		if (vars.size() == 0)
 			return;
 		for (CubeVar var: vars) {
-			var.updateValue(var.run(), EventTypes.changed);
+			var.updateValue(var.frontendRun(), EventTypes.changed);
 			this.updateFrontendRunVarsAfterSourceVarChanged(this.getMyAffectedCubeVars(var));
 		}		
 	}

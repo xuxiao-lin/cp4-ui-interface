@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import com.cp4biz.cp4.uiinterface.calculate.cube.expression.Expression;
 import com.cp4biz.cp4.uiinterface.calculate.cube.expression.ExpressionValue;
+import com.cp4biz.cp4.uiinterface.calculate.cube.expression.ExpressionValueType;
 
 
 //TODO
@@ -50,9 +51,9 @@ public abstract class CubeProxy {
 		}
 		return var;
 	}
-	public void addVar(CubeVar var) {
+	public void addVar(CubeVar var, ExpressionValueType valueType) {
 		if (this.getVar(var.getKey()) == null) {
-			var.iniCubeProxy(this);
+			var.ini(this,valueType);
 			this._vars.add(var);
 		}
 	}
@@ -64,7 +65,7 @@ public abstract class CubeProxy {
 		return var.getValue();
 	}
 	public abstract boolean checkReadonlyVarMustRunFromServer(CubeVar var);
-	public abstract ExpressionValue updateReadonlyVarValue(CubeVar var);
+	public abstract ExpressionValue updateReadonlyVarFrontendRunValue(CubeVar var);
 	
 	public abstract JSONObject getChangesJsonData();
 }

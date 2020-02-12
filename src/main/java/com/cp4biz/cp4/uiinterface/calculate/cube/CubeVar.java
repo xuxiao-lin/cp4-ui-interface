@@ -3,6 +3,7 @@ package com.cp4biz.cp4.uiinterface.calculate.cube;
 import com.cp4biz.cp4.uiinterface.calculate.cube.CubeVarEvent.EventTypes;
 import com.cp4biz.cp4.uiinterface.calculate.cube.expression.Expression;
 import com.cp4biz.cp4.uiinterface.calculate.cube.expression.ExpressionValue;
+import com.cp4biz.cp4.uiinterface.calculate.cube.expression.ExpressionValueType;
 
 public class CubeVar implements ICubeVarEventListener {
 	private Expression _expression;//for expression var only
@@ -41,12 +42,17 @@ public class CubeVar implements ICubeVarEventListener {
 		}
 		
 	}
+	private ExpressionValueType _valueType;
+	public ExpressionValueType getValueType() {
+		return this._valueType;
+	}
 	private CubeProxy _cubeProxy;
 	public CubeProxy getCubeProxy() {
 		return this._cubeProxy;
 	}
-	public void iniCubeProxy(CubeProxy cubeProxy) {
+	public void ini(CubeProxy cubeProxy,ExpressionValueType valueType) {
 		this._cubeProxy = cubeProxy;
+		this._valueType = valueType;
 	}
 	private String _key;
 	public void setKey(String key) {
@@ -55,13 +61,13 @@ public class CubeVar implements ICubeVarEventListener {
 	public String getKey() {
 		return this._key;
 	}
-	public ExpressionValue run() {
+	public ExpressionValue frontendRun() {
 		ExpressionValue result = null;
 		if (this._isReadonly) {
-			result = this.getCubeProxy().updateReadonlyVarValue(this);
+			result = this.getCubeProxy().updateReadonlyVarFrontendRunValue(this);
 		}
 		else if (this._expression != null) {
-			result = this._expression.run();
+			result = this._expression.frontendRun();
 		}
 		return result;
 	}
@@ -86,7 +92,7 @@ public class CubeVar implements ICubeVarEventListener {
 	}
 	public void onCubeVarChanging(CubeVarEvent event) {
 		if (!this.checkMustRunFromServer()) {
-			ExpressionValue result = this.run();
+			ExpressionValue result = this.frontendRun();
 			this.updateValue(result, EventTypes.changing);
 		}
 	}
