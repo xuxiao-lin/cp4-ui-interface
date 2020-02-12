@@ -1,10 +1,12 @@
 package com.cp4biz.cp4.uiinterface.calculate.cube;
 
+import java.util.HashMap;
 import java.util.HashSet;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.cp4biz.cp4.uiinterface.calculate.cube.CubeVarEvent.EventTypes;
 import com.cp4biz.cp4.uiinterface.calculate.cube.expression.Expression;
 import com.cp4biz.cp4.uiinterface.calculate.cube.expression.ExpressionValue;
 
@@ -20,36 +22,33 @@ public class CubeManager {
 		return true;
 	}
 	private HashSet<CubeProxy> _cubes = new HashSet<CubeProxy>();
-	public void onCubeVarChanging(CubeVar var) {
-		HashSet<CubeVar> affectedVars = this.getAffectedCubeVars(var,true);
-		HashSet<CubeProxy> cubes = new HashSet<CubeProxy>();
-		for (CubeVar affected : affectedVars) {
-			cubes.add(affected.getCubeProxy());
+	public void refreshAllCubesAfterSourceCubeVarChanged(CubeVar sourceVar) {
+		boolean b = this.checkCubeVarRefreshMustRunOnServer(sourceVar);
+		if (b) {
+			//run on server
 		}
-		for (CubeProxy cube : cubes) {
-			cube.onInputVarChanging(var);
+		else {
+			HashSet<CubeVar> vars = this.getMyAffectedCubeVars(sourceVar);
+			this.updateFrontendRunVarsAfterSourceVarChanged(vars);
 		}
 	}
-	
-	public ExpressionValue runCubeVarOnFrontend(CubeVar var) {
-		var.run();
-		HashSet<CubeVar> affectedVars = this.getAffectedCubeVars(var,false);
-		HashSet<CubeProxy> cubes = new HashSet<CubeProxy>();
-		for (CubeVar affected : affectedVars) {
-			cubes.add(affected.getCubeProxy());
-		}
-		for (CubeProxy cube : cubes) {
-			cube.inputVarChanged(var);
-		}
-		return var.getValue();
+	private void updateFrontendRunVarsAfterSourceVarChanged(HashSet<CubeVar> vars) {
+		if (vars.size() == 0)
+			return;
+		for (CubeVar var: vars) {
+			var.updateValue(var.run(), EventTypes.changed);
+			this.updateFrontendRunVarsAfterSourceVarChanged(this.getMyAffectedCubeVars(var));
+		}		
 	}
 	
-	public HashSet<CubeVar> getAffectedCubeVars(CubeVar sourceVar,boolean frontendOnly) {
+	public HashSet<CubeVar> getAllAffectedCubeVars(CubeVar sourceVar) {
 		return new HashSet<CubeVar>();
 	}
-	private boolean _lastAffectedSearchMustRunOnServer = false;
-	public boolean getLastAffectedSearchMustRunOnServer() {
-		return this._lastAffectedSearchMustRunOnServer;
+	public HashSet<CubeVar> getMyAffectedCubeVars(CubeVar sourceVar){
+		return new HashSet<CubeVar>();
+	}
+	public boolean checkCubeVarRefreshMustRunOnServer(CubeVar sourceVar) {
+		return false;
 	}
 	
 	public JSONArray getAllCubesChangesData() {

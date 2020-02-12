@@ -19,20 +19,20 @@ public class ChangeCubeVarCommand extends UserCommand {
 
 	@Override
 	public void undo() {
-		sourceVar.setExpression(oldExpression);
-		for (int i=0;i<changingVars.size();i++) {
-			CubeVar var = changingVars.get(i);
-			var.setValue(oldValues.get(i));
-		}
+//		sourceVar.setExpression(oldExpression);
+//		for (int i=0;i<changingVars.size();i++) {
+//			CubeVar var = changingVars.get(i);
+//			var.setValue(oldValues.get(i));
+//		}
 	}
 
 	@Override
 	public void redo() {
-		sourceVar.setExpression(newExpression);
-		for (int i=0;i<changingVars.size();i++) {
-			CubeVar var = changingVars.get(i);
-			var.setValue(newValues.get(i));
-		}
+//		sourceVar.setExpression(newExpression);
+//		for (int i=0;i<changingVars.size();i++) {
+//			CubeVar var = changingVars.get(i);
+//			var.setValue(newValues.get(i));
+//		}
 	}
 
 	@Override
@@ -49,16 +49,15 @@ public class ChangeCubeVarCommand extends UserCommand {
 	@Override
 	protected void keepOldValues() {
 		this.oldExpression = this.sourceVar.getExpression();
-		HashSet<CubeVar> affectedVars = CubeManager.getInstance().getAffectedCubeVars(sourceVar, false);
+		HashSet<CubeVar> affectedVars = CubeManager.getInstance().getAllAffectedCubeVars(sourceVar);
 		this.changingVars.add(this.sourceVar);
 		this.changingVars.addAll(affectedVars);
 		for (CubeVar var : this.changingVars) {
 			this.oldValues.add(var.getValue());
 		}
-		this._mustRunOnServer = CubeManager.getInstance().getLastAffectedSearchMustRunOnServer();
+		this._mustRunOnServer = CubeManager.getInstance().checkCubeVarRefreshMustRunOnServer(sourceVar);
 	}
 	private boolean _mustRunOnServer = false;
-	@Override
 	public boolean mustRunOnServer() {
 		return this._mustRunOnServer;
 	}
@@ -74,7 +73,11 @@ public class ChangeCubeVarCommand extends UserCommand {
 	@Override
 	protected void afterRunOnServer(JSONObject response) {
 		// TODO Auto-generated method stub
-		
+		//更新var
+		//记录新的值到command
+		for (int i=0;i<changingVars.size();i++) {
+			this.newValues.add(changingVars.get(i).getValue());
+		}
 	}
 
 	@Override
@@ -84,12 +87,6 @@ public class ChangeCubeVarCommand extends UserCommand {
 
 	@Override
 	protected void runOnFrontend() {
-		if (this._mustRunOnServer)
-			return;
-		CubeManager.getInstance().runCubeVarOnFrontend(this.sourceVar);
-		for (int i=0;i<changingVars.size();i++) {
-			this.newValues.add(changingVars.get(i).getValue());
-		}
 	}
 	public static String Key = "ChangeCubeVar";
 }
