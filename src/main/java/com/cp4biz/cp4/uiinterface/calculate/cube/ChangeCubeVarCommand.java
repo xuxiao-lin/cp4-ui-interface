@@ -5,8 +5,8 @@ import java.util.HashSet;
 
 import org.json.JSONObject;
 
-import com.cp4biz.cp4.uiinterface.calculate.cube.expression.Expression;
-import com.cp4biz.cp4.uiinterface.calculate.cube.expression.ExpressionValue;
+import com.cp4biz.cp4.uiinterface.calculate.expression.Expression;
+import com.cp4biz.cp4.uiinterface.calculate.expression.ExpressionValue;
 import com.cp4biz.cp4.uiinterface.usercommand.UserCommand;
 
 public class ChangeCubeVarCommand extends UserCommand {

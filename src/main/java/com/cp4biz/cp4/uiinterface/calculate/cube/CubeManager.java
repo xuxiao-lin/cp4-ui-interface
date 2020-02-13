@@ -7,8 +7,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.cp4biz.cp4.uiinterface.calculate.cube.CubeVarEvent.EventTypes;
-import com.cp4biz.cp4.uiinterface.calculate.cube.expression.Expression;
-import com.cp4biz.cp4.uiinterface.calculate.cube.expression.ExpressionValue;
+import com.cp4biz.cp4.uiinterface.calculate.expression.Expression;
+import com.cp4biz.cp4.uiinterface.calculate.expression.ExpressionValue;
 
 public class CubeManager {
 	protected static CubeManager _instance;

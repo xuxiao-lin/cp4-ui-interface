@@ -1,4 +1,4 @@
-package com.cp4biz.cp4.uiinterface.calculate.cube.expression;
+package com.cp4biz.cp4.uiinterface.calculate.expression;
 
 public abstract class Operator {
 	public abstract ExpressionValue run(ExpressionValue leftValue, ExpressionValue rightValue);

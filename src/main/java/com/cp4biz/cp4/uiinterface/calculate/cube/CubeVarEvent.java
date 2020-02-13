@@ -2,7 +2,7 @@ package com.cp4biz.cp4.uiinterface.calculate.cube;
 
 import java.util.EventObject;
 
-import com.cp4biz.cp4.uiinterface.calculate.cube.expression.ExpressionValue;
+import com.cp4biz.cp4.uiinterface.calculate.expression.ExpressionValue;
 
 public class CubeVarEvent extends EventObject {
 	public CubeVarEvent(Object source) {

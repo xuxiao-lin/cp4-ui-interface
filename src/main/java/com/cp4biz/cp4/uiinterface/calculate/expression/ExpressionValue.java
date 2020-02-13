@@ -1,4 +1,4 @@
-package com.cp4biz.cp4.uiinterface.calculate.cube.expression;
+package com.cp4biz.cp4.uiinterface.calculate.expression;
 
 public abstract class ExpressionValue {
 	public abstract ExpressionValueType getValueType();

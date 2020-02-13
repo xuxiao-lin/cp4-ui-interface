@@ -1,4 +1,4 @@
-package com.cp4biz.cp4.uiinterface.calculate.cube.expression;
+package com.cp4biz.cp4.uiinterface.calculate.expression;
 
 import java.util.ArrayList;
 import java.util.HashSet;

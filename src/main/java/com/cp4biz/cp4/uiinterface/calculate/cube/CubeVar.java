@@ -1,9 +1,9 @@
 package com.cp4biz.cp4.uiinterface.calculate.cube;
 
 import com.cp4biz.cp4.uiinterface.calculate.cube.CubeVarEvent.EventTypes;
-import com.cp4biz.cp4.uiinterface.calculate.cube.expression.Expression;
-import com.cp4biz.cp4.uiinterface.calculate.cube.expression.ExpressionValue;
-import com.cp4biz.cp4.uiinterface.calculate.cube.expression.ExpressionValueType;
+import com.cp4biz.cp4.uiinterface.calculate.expression.Expression;
+import com.cp4biz.cp4.uiinterface.calculate.expression.ExpressionValue;
+import com.cp4biz.cp4.uiinterface.calculate.expression.ExpressionValueType;
 
 public class CubeVar implements ICubeVarEventListener {
 	private Expression _expression;//for expression var only
