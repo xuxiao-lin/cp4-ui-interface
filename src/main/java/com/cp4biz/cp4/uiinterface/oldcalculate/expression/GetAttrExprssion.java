@@ -1,8 +1,8 @@
-package com.cp4biz.cp4.uiinterface.calculate.expression;
+package com.cp4biz.cp4.uiinterface.oldcalculate.expression;
 
 import java.util.HashSet;
 
-import com.cp4biz.cp4.uiinterface.calculate.cube.CubeVar;
+import com.cp4biz.cp4.uiinterface.oldcalculate.cube.CubeVar;
 
 public class GetAttrExprssion extends Expression {
 	private Expression _targetExpression;

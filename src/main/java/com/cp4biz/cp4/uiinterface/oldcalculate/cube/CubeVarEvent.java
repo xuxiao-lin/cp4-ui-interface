@@ -1,8 +1,8 @@
-package com.cp4biz.cp4.uiinterface.calculate.cube;
+package com.cp4biz.cp4.uiinterface.oldcalculate.cube;
 
 import java.util.EventObject;
 
-import com.cp4biz.cp4.uiinterface.calculate.expression.ExpressionValue;
+import com.cp4biz.cp4.uiinterface.oldcalculate.expression.ExpressionValue;
 
 public class CubeVarEvent extends EventObject {
 	public CubeVarEvent(Object source) {

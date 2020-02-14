@@ -1,32 +1,34 @@
 package com.cp4biz.cp4.uiinterface.calculate.expression;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 
-import com.cp4biz.cp4.uiinterface.calculate.cube.CubeVar;
+import com.cp4biz.cp4.uiinterface.dataflow.DataType;
+import com.cp4biz.cp4.uiinterface.dataflow.DataValue;
+import com.cp4biz.cp4.uiinterface.dataflow.IDataInterface;
 
 public class ConstExpression extends Expression {
-	private ExpressionValue _value;
 	
-	public ConstExpression(ExpressionValue value) {
-		this._value = value;
-	}
 	@Override
 	public boolean checkMustRunFromServer() {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public ExpressionValue frontendRun() {
-		return this._value;
+	public DataValue run() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public ExpressionValueType getValueType() {
-		return this._value.getValueType();
+	public DataType getValueType() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public HashSet<CubeVar> getInputVars() {
+	public ArrayList<IDataInterface> getInputs() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

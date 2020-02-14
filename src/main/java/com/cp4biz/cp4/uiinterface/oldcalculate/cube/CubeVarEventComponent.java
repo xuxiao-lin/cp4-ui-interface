@@ -1,6 +1,6 @@
-package com.cp4biz.cp4.uiinterface.calculate.cube;
+package com.cp4biz.cp4.uiinterface.oldcalculate.cube;
 
-import com.cp4biz.cp4.uiinterface.calculate.cube.CubeVarEvent.EventTypes;
+import com.cp4biz.cp4.uiinterface.oldcalculate.cube.CubeVarEvent.EventTypes;
 
 public class CubeVarEventComponent {
 	public void addListener(ICubeVarEventListener listener, EventTypes eventType) {

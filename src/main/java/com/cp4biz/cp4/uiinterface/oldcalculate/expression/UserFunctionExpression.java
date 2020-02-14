@@ -1,9 +1,9 @@
-package com.cp4biz.cp4.uiinterface.calculate.expression;
+package com.cp4biz.cp4.uiinterface.oldcalculate.expression;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import com.cp4biz.cp4.uiinterface.calculate.cube.CubeVar;
+import com.cp4biz.cp4.uiinterface.oldcalculate.cube.CubeVar;
 
 public class UserFunctionExpression extends Expression {
 	private UserFunction _function;

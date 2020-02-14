@@ -1,4 +1,4 @@
-package com.cp4biz.cp4.uiinterface.calculate.expression;
+package com.cp4biz.cp4.uiinterface.oldcalculate.expression;
 
 public abstract class ExpressionValueType {
 	protected String _key;

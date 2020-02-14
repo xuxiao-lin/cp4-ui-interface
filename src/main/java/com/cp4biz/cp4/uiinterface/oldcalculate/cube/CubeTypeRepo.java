@@ -1,4 +1,4 @@
-package com.cp4biz.cp4.uiinterface.calculate.cube;
+package com.cp4biz.cp4.uiinterface.oldcalculate.cube;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;

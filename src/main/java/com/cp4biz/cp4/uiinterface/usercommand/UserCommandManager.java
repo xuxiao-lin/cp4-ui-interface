@@ -5,7 +5,7 @@ import java.util.Stack;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.cp4biz.cp4.uiinterface.calculate.cube.CubeManager;
+import com.cp4biz.cp4.uiinterface.oldcalculate.cube.CubeManager;
 import com.cp4biz.cp4.uiinterface.usercommand.UserCommand.CommandStatus;
 
 import webservice.CommandService;

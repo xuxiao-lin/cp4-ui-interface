@@ -4,8 +4,9 @@ import java.util.HashMap;
 
 public abstract class DataProcessor implements ISwitch {
 	public abstract void run();
-	private HashMap<String, Terminal> _inputTerminals = new HashMap<String, Terminal>();
-	private HashMap<String, Terminal> _outputTerminals = new HashMap<String, Terminal>();
+	public abstract boolean checkRunFromServer();
+	protected HashMap<String, Terminal> _inputTerminals = new HashMap<String, Terminal>();
+	protected HashMap<String, Terminal> _outputTerminals = new HashMap<String, Terminal>();
 	public Terminal getInputTerminal(String key) {
 		return this._inputTerminals.get(key);
 	}
