@@ -7,11 +7,15 @@ public abstract class DataProcessor implements ISwitch {
 	public abstract boolean checkRunFromServer();
 	protected HashMap<String, Terminal> _inputTerminals = new HashMap<String, Terminal>();
 	protected HashMap<String, Terminal> _outputTerminals = new HashMap<String, Terminal>();
+	protected HashMap<String, InnerDataPoint> _innerOutputs = new HashMap<String, InnerDataPoint>();
 	public Terminal getInputTerminal(String key) {
 		return this._inputTerminals.get(key);
 	}
 	public Terminal getOutputTerminal(String key) {
 		return this._outputTerminals.get(key);
+	}
+	public InnerDataPoint getInnerOutput(String key) {
+		return this._innerOutputs.get(key);
 	}
 	public void onInputValueChanged(Terminal inputTerminal) {
 		if (this._switchOn)

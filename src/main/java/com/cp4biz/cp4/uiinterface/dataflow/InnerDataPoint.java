@@ -1,6 +1,6 @@
 package com.cp4biz.cp4.uiinterface.dataflow;
 
-public class InnerDataOutput implements IDataInterface {
+public class InnerDataPoint implements IDataInterface {
 	private String _key;
 	private DataType _dataType;
 	private DataValue _value;
