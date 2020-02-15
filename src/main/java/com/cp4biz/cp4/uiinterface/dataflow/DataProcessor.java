@@ -1,9 +1,9 @@
 package com.cp4biz.cp4.uiinterface.dataflow;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Set;
-
-import javax.xml.transform.Templates;
 
 public abstract class DataProcessor implements ISwitch,IDataInterfaceEventListener {
 	public abstract void run();
@@ -19,6 +19,9 @@ public abstract class DataProcessor implements ISwitch,IDataInterfaceEventListen
 	}
 	public InnerDataPoint getInnerOutput(String key) {
 		return this._innerOutputs.get(key);
+	}
+	public Collection<Terminal> getOutputTerminals(){
+		return this._outputTerminals.values();
 	}
 	public void onInputValueChanged(Terminal inputTerminal) {
 		if (this._switchOn)

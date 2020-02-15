@@ -14,6 +14,12 @@ public class Terminal implements IDataInterface {
 		this._isOutput = isOutput;
 		this._processor = processor;
 	}
+	public boolean isOutput() {
+		return _isOutput;
+	}
+	public DataProcessor getProcessor() {
+		return this._processor;
+	}
 	public DataValue getValue() {
 		return this._value;
 	}

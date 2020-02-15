@@ -10,6 +10,12 @@ public class DataFlow implements ISwitch,IDataInterfaceEventListener {
 			this._endTerminal.setValue(this._endTerminal == null?null:this._startTerminal.getValue());
 	}
 	private boolean _switchOn = true;
+	public Terminal getStartTerminal() {
+		return this._startTerminal;
+	}
+	public Terminal getEndTerminal() {
+		return this._endTerminal;
+	}
 	public void connect(Terminal start, Terminal end) {
 		if (this._startTerminal != null)
 			DataInterfaceEvent.removeListener(_startTerminal, this);
