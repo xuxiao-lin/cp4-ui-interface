@@ -2,7 +2,7 @@ package com.cp4biz.cp4.uiinterface.dataflow;
 
 import java.util.HashMap;
 
-public abstract class DataProcessor implements ISwitch {
+public abstract class DataProcessor implements ISwitch,IDataInterfaceEventListener {
 	public abstract void run();
 	public abstract boolean checkRunFromServer();
 	protected HashMap<String, Terminal> _inputTerminals = new HashMap<String, Terminal>();

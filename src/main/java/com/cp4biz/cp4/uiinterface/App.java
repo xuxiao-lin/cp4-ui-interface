@@ -13,6 +13,7 @@ import com.cp4biz.cp4.uiinterface.calculate.expression.OperatorRepo;
 import com.cp4biz.cp4.uiinterface.calculate.expression.UserFunction;
 import com.cp4biz.cp4.uiinterface.calculate.expression.UserFunctionExpression;
 import com.cp4biz.cp4.uiinterface.calculate.expression.UserFunctionRepo;
+import com.cp4biz.cp4.uiinterface.dataflow.DataFlow;
 import com.cp4biz.cp4.uiinterface.dataflow.DataProcessor;
 import com.cp4biz.cp4.uiinterface.dataflow.DataType;
 import com.cp4biz.cp4.uiinterface.dataflow.DataTypeRepo;
@@ -34,6 +35,11 @@ public class App
     public static void main( String[] args )
     {
     	AppLoader.ini();
+    	ExpressionProcessor ep2 = new ExpressionProcessor();
+    	ConstExpression cst2 = new ConstExpression(new ConstNumber(5));
+    	ep2.setExpression(cst2);
+    	
+    	
         ExpressionProcessor ep1 = new ExpressionProcessor();
         OperatorExpression ope = new OperatorExpression();
         DataTypeRepo dataTypeRepo = DataTypeRepo.getInstance();
@@ -41,11 +47,14 @@ public class App
         Operator add = OperatorRepo.getInstance().getOp("+", numtype, numtype);
         ope.setOperator(add);
         Terminal t1 = new Terminal();
-        t1.setValue(new ConstNumber(10));
         t1.setKey("val1");
         Terminal t2 = new Terminal();
         t2.setValue(new ConstNumber(20));
         t2.setKey("val2");
+        ArrayList<Terminal> inputTesr = new ArrayList<Terminal>();
+        inputTesr.add(t1);
+        inputTesr.add(t2);
+        ep1.setInputTerminals(inputTesr);
         GetDataExpression gd1 = new GetDataExpression();
         gd1.setDataInterface(t1);
         ope.setLeftExpression(gd1);
@@ -61,7 +70,11 @@ public class App
         ufe.setInputs(funcinputs);
         ope.setRightExpression(ufe);
         ep1.setExpression(ope);
-        ep1.run();
+        
+        DataFlow df = new DataFlow();
+        df.connect(ep2.getOutputTerminal(ExpressionProcessor.OutputKey), ep1.getInputTerminal("val1"));
+        
+        ep2.run();
         DataValue dv = ep1.getOutputTerminal(ExpressionProcessor.OutputKey).getValue();
         System.out.println(((IConstValue)dv).toString());
     }

@@ -1,5 +1,9 @@
 package com.cp4biz.cp4.uiinterface.dataflow;
 
+import java.util.ArrayList;
+
+import com.cp4biz.cp4.uiinterface.dataflow.DataInterfaceEvent.EventType;
+
 public class Terminal implements IDataInterface {
 	private String _key;
 	private DataType _dataType;
@@ -10,6 +14,9 @@ public class Terminal implements IDataInterface {
 	public void setValue(DataValue value) {
 		this._value = value;
 		//发送事件
+		DataInterfaceEvent event = new DataInterfaceEvent(this);
+		event.eventType = EventType.valueChanged;
+		DataInterfaceEvent.fireEvent(this, event);
 	}
 	public DataType getValueType() {
 		return this._dataType;

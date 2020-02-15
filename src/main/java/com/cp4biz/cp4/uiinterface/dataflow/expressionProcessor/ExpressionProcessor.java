@@ -18,9 +18,13 @@ public class ExpressionProcessor extends DataProcessor {
 		return this._expression;
 	}
 	public void setInputTerminals(ArrayList<Terminal> inputs) {
+		for (Terminal input:_inputTerminals.values()) {
+			DataInterfaceEvent.removeListener(input, this);
+		}
 		this._inputTerminals.clear();
 		for (Terminal input : inputs) {
 			this._inputTerminals.put(input.getKey(), input);
+			DataInterfaceEvent.addListener(input, this);
 		}
 	}
 	
@@ -37,4 +41,9 @@ public class ExpressionProcessor extends DataProcessor {
 		return this._expression.checkMustRunFromServer();
 	}
 	public static String OutputKey = "result";
+	@Override
+	public void onDataInterfaceValueChanged(DataInterfaceEvent event) {
+		if (this.getSwitchOn())
+			this.run();
+	}
 }
