@@ -4,7 +4,7 @@ import com.cp4biz.cp4.uiinterface.dataflow.DataType;
 
 public class NumberValueType extends DataType {
 	public NumberValueType() {
-		
+		this._key = Key;
 	}
 	@Override
 	public DataType getAttrType(String key) {
@@ -19,5 +19,5 @@ public class NumberValueType extends DataType {
 		return false;
 	}
 	public static String Attr_precision = "precision";
-	public static String Key;
+	public static String Key = "number";
 }

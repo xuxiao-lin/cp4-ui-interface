@@ -8,4 +8,5 @@ public abstract class Expression {
 	public abstract boolean checkMustRunFromServer();
 	public abstract DataValue run();
 	public abstract DataType getValueType();
+	
 }

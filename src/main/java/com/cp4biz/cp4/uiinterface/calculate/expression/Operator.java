@@ -9,5 +9,6 @@ public abstract class Operator {
 	public abstract DataValue run(DataValue leftValue, DataValue rightValue);
 	public abstract DataType getResultType();
 	public abstract boolean checkMustRunFromServer();
-	public abstract boolean needLeftValue();
+	public abstract DataType getLeftType();
+	public abstract DataType getRightType();
 }

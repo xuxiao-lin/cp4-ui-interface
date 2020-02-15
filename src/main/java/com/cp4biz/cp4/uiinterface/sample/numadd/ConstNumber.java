@@ -1,5 +1,7 @@
 package com.cp4biz.cp4.uiinterface.sample.numadd;
 
+import java.text.NumberFormat;
+
 import com.cp4biz.cp4.uiinterface.calculate.expression.IConstValue;
 import com.cp4biz.cp4.uiinterface.dataflow.DataType;
 import com.cp4biz.cp4.uiinterface.dataflow.DataTypeRepo;
@@ -28,5 +30,12 @@ public class ConstNumber extends DataValue implements IConstValue {
 		}
 		return null;
 	}
-	
+	@Override
+	public String toString() {
+		if (_precision == -1)
+			return String.valueOf(_value);
+		NumberFormat nf = NumberFormat.getInstance();
+		nf.setMaximumFractionDigits(_precision);
+		return nf.format(_value);
+	}
 }

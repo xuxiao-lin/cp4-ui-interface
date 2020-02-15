@@ -26,13 +26,18 @@ public class AddOperator extends Operator {
 	}
 
 	@Override
-	public boolean needLeftValue() {
-		return true;
+	public String getSign() {
+		return "+";
 	}
 
 	@Override
-	public String getSign() {
-		return "+";
+	public DataType getLeftType() {
+		return DataTypeRepo.getInstance().getType(NumberValueType.Key);
+	}
+
+	@Override
+	public DataType getRightType() {
+		return DataTypeRepo.getInstance().getType(NumberValueType.Key);
 	}
 
 }

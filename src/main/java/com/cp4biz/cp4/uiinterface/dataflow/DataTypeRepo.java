@@ -18,4 +18,7 @@ public class DataTypeRepo {
 	public DataType getType(String key) {
 		return this._types.get(key);
 	}
+	public void registerType(DataType type) {
+		this._types.put(type.getKey(), type);
+	}
 }
