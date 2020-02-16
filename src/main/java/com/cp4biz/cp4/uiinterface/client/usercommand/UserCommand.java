@@ -1,4 +1,4 @@
-package com.cp4biz.cp4.uiinterface.usercommand;
+package com.cp4biz.cp4.uiinterface.client.usercommand;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

@@ -3,8 +3,8 @@ package com.cp4biz.cp4.uiinterface.dataflow;
 import com.cp4biz.cp4.uiinterface.dataflow.DataInterfaceEvent.EventType;
 
 public class DataFlow implements ISwitch,IDataInterfaceEventListener {
-	private Terminal _startTerminal;
-	private Terminal _endTerminal;
+	private OutputTerminal _startTerminal;
+	private InputTerminal _endTerminal;
 	public void transferValue() {
 		if (this._endTerminal != null && this._startTerminal != null)
 			this._endTerminal.setValue(this._endTerminal == null?null:this._startTerminal.getValue());
@@ -16,17 +16,20 @@ public class DataFlow implements ISwitch,IDataInterfaceEventListener {
 	public Terminal getEndTerminal() {
 		return this._endTerminal;
 	}
-	public void connect(Terminal start, Terminal end) {
-		if (this._startTerminal != null)
+	public void connect(OutputTerminal start, InputTerminal end) {
+		if (this._startTerminal != null) {
+			this._startTerminal.removeConnection(this);
 			DataInterfaceEvent.removeListener(_startTerminal, this);
-		if (this._endTerminal != null)
-			DataInterfaceEvent.removeListener(_endTerminal, this);
+		}
+		if (this._endTerminal != null) {
+			this._endTerminal.removeConnection(this);
+		}
 		this._startTerminal = start;
 		this._endTerminal = end;
+		start.addConnection(this);
+		end.setConnection(this);
 		if (this._startTerminal != null)
 			DataInterfaceEvent.addListener(_startTerminal, this);
-		if (this._endTerminal != null)
-			DataInterfaceEvent.addListener(_endTerminal, this);
 	}
 	public void setSwitchOn(boolean value) {
 		this._switchOn = value;

@@ -2,7 +2,7 @@ package com.cp4biz.cp4.uiinterface.oldcalculate.cube;
 
 import org.json.JSONObject;
 
-import com.cp4biz.cp4.uiinterface.usercommand.UserCommand;
+import com.cp4biz.cp4.uiinterface.client.usercommand.UserCommand;
 
 public class CreateCubeCommand extends UserCommand {
 	public static String Key = "CreateCube";

@@ -7,7 +7,8 @@ import com.cp4biz.cp4.uiinterface.dataflow.*;
 
 public class ExpressionProcessor extends DataProcessor {
 	public ExpressionProcessor() {
-		this.addTerminal(_outputTerminal, true);
+		_outputTerminal.setKey(OutputKey);
+		this.addOutputTerminal(_outputTerminal);
 	}
 	private Expression _expression;
 	public void setExpression(Expression expression) {
@@ -17,10 +18,10 @@ public class ExpressionProcessor extends DataProcessor {
 	public Expression getExpression() {
 		return this._expression;
 	}
-	public void setInputTerminals(ArrayList<Terminal> inputs) {
+	public void setInputTerminals(ArrayList<InputTerminal> inputs) {
 		this.removeAllInputTerminals();
-		for (Terminal input : inputs) {
-			this.addTerminal(input, false);
+		for (InputTerminal input : inputs) {
+			this.addInputTerminal(input);
 		}
 	}
 	
@@ -28,7 +29,7 @@ public class ExpressionProcessor extends DataProcessor {
 	public void run() {
 		this._outputTerminal.setValue(_expression==null?null:_expression.run());
 	}
-	private Terminal _outputTerminal = new Terminal();
+	private OutputTerminal _outputTerminal = new OutputTerminal();
 
 	@Override
 	public boolean checkRunFromServer() {

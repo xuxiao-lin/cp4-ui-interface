@@ -8,14 +8,9 @@ public class Terminal implements IDataInterface {
 	private String _key;
 	private DataType _dataType;
 	private DataValue _value;
-	private boolean _isOutput = false;
 	private DataProcessor _processor;
-	public void ini(DataProcessor processor, boolean isOutput) {
-		this._isOutput = isOutput;
+	public void ini(DataProcessor processor) {
 		this._processor = processor;
-	}
-	public boolean isOutput() {
-		return _isOutput;
 	}
 	public DataProcessor getProcessor() {
 		return this._processor;
