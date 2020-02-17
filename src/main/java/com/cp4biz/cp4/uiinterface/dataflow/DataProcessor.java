@@ -9,7 +9,6 @@ import java.util.Set;
 import com.cp4biz.cp4.uiinterface.dataflow.composedProcessor.ComposedProcessor;
 
 public abstract class DataProcessor implements ISwitch,IDataInterfaceEventListener {
-	public abstract void run();
 	public abstract boolean checkRunFromServer();
 	private HashMap<String, InputTerminal> _inputTerminals = new HashMap<String, InputTerminal>();
 	private HashMap<String, OutputTerminal> _outputTerminals = new HashMap<String, OutputTerminal>();
@@ -61,9 +60,10 @@ public abstract class DataProcessor implements ISwitch,IDataInterfaceEventListen
 			this.removeOutputTerminal(key);
 		}
 	}
-	public void onInputValueChanged(Terminal inputTerminal) {
+	protected abstract void handleInputTerminalValueChanged(InputTerminal inputTerminal);
+	public void onInputValueChanged(InputTerminal inputTerminal) {
 		if (this._switchOn)
-			this.run();
+			this.handleInputTerminalValueChanged(inputTerminal);
 	}
 	private boolean _switchOn = true;
 	public void setSwitchOn(boolean value) {

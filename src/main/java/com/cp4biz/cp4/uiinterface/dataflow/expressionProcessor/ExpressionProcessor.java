@@ -26,7 +26,7 @@ public class ExpressionProcessor extends DataProcessor {
 	}
 	
 	@Override
-	public void run() {
+	public void handleInputTerminalValueChanged(InputTerminal inputValue) {
 		this._outputTerminal.setValue(_expression==null?null:_expression.run());
 	}
 	private OutputTerminal _outputTerminal = new OutputTerminal();
@@ -41,6 +41,6 @@ public class ExpressionProcessor extends DataProcessor {
 	@Override
 	public void onDataInterfaceValueChanged(DataInterfaceEvent event) {
 		if (this.getSwitchOn())
-			this.run();
+			this.handleInputTerminalValueChanged((InputTerminal)event.source);
 	}
 }
