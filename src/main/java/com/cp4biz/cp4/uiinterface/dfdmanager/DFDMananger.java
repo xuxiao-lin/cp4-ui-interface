@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Stack;
 
 import com.cp4biz.cp4.uiinterface.dataflow.*;
-import com.cp4biz.cp4.uiinterface.dataflow.composedProcessor.ComposedProcessor;
 
 public class DFDMananger {
 	public HashSet<DataProcessor> getNextProcessors(DataProcessor source){
@@ -29,13 +28,6 @@ public class DFDMananger {
 		}
 		return previous;
 	}
-	public DataProcessor getParent(DataProcessor source) {
-		return source.getParent();
-	}
-	public ArrayList<DataProcessor> getChildren(ComposedProcessor source){
-		return source.getChildren();
-	}
-
 	
 	private ArrayList<DataProcessor> _processors = new ArrayList<DataProcessor>();
 	private ArrayList<DataFlow> _flows = new ArrayList<DataFlow>();

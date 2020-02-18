@@ -74,8 +74,8 @@ public class App
         DataFlow df = new DataFlow();
         df.connect(ep2.getOutputTerminal(ExpressionProcessor.OutputKey), ep1.getInputTerminal("val1"));
         
-        ep2.run();
-        DataValue dv = ep1.getOutputTerminal(ExpressionProcessor.OutputKey).getValue();
-        System.out.println(((IConstValue)dv).toString());
+//        ep2.run();
+//        DataValue dv = ep1.getOutputTerminal(ExpressionProcessor.OutputKey).getValue();
+//        System.out.println(((IConstValue)dv).toString());
     }
 }

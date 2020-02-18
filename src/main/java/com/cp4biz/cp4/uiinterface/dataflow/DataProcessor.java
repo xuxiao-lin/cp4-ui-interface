@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.cp4biz.cp4.uiinterface.dataflow.composedProcessor.ComposedProcessor;
 
 public abstract class DataProcessor implements ISwitch,IDataInterfaceEventListener {
 	public abstract boolean checkRunFromServer();
@@ -71,12 +70,5 @@ public abstract class DataProcessor implements ISwitch,IDataInterfaceEventListen
 	}
 	public boolean getSwitchOn() {
 		return this._switchOn;
-	}
-	private ComposedProcessor _parent;
-	public ComposedProcessor getParent() {
-		return this._parent;
-	}
-	public void setParent(ComposedProcessor parent) {
-		this._parent = parent;
 	}
 }
